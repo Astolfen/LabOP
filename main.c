@@ -1,4 +1,3 @@
-#include <stdint.h>
 #include <assert.h>
 #include "libs/data_structures/vector/vector.h"
 
@@ -62,9 +61,23 @@ void test_back_oneElementInVector() {
     assert(b == &v.data[0]);
 }
 
+void test_back_NormalVector() {
+    int a[] = {12, 12, 9, 2, 5};
+    vector v = {a, 2, 5};
+    int *b = back(&v);
+    assert(b == &v.data[1]);
+}
+
 void test_front_oneElementInVector() {
     int a[] = {7, 2, 9, 2, 5};
     vector v = {a, 1, 5};
+    int *b = front(&v);
+    assert(b == &v.data[0]);
+}
+
+void test_front_NormalVector() {
+    int a[] = {7, 2, 9, 2, 5};
+    vector v = {a, 3, 5};
     int *b = front(&v);
     assert(b == &v.data[0]);
 }

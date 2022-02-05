@@ -76,7 +76,7 @@ int *atVector(vector *v, size_t index) {
         fprintf(stderr, "IndexError: a[%d] is not exists", index);
         exit(1);
     }
-    return &v->data[index];
+    return &v->data[index]; // или так v->data + index
 }
 
 int *back(vector *v) {
