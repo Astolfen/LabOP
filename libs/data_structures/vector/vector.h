@@ -17,7 +17,7 @@ typedef struct vector {
 vector createVector(size_t n);
 
 // изменяет количесво памяти выделенной
-// под массив структуры v на размер newCapcity
+// под массив структуры v на размер newCapacity
 void reserve(vector *v, size_t newCapacity);
 
 //удаляет элементы векторов v
