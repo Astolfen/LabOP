@@ -9,6 +9,7 @@ vectorVoid createVectorV(size_t n, size_t baseTypeSize) {
     return (vectorVoid) {data, 0, n,baseTypeSize};
 }
 
+//не знаю нужен ли буфер как думаете?
 void reserveV(vectorVoid *v, size_t newCapacity) {
     if (!(v->data = (void *) realloc(v->data, newCapacity * sizeof(v->baseTypeSize)))) {
         fprintf(stderr, "bad alloc ");
