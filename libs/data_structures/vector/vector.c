@@ -10,22 +10,15 @@ vector createVector(size_t n) {
 }
 
 void reserve(vector *v, size_t newCapacity) {
-    int *buffer = (int *) malloc(v->capacity * sizeof(int));
-    memcpy(buffer, v->data, v->capacity * sizeof(int));
-    if (!(buffer = (int *) realloc(buffer, newCapacity * sizeof(int)))) {
-        free(buffer);
+    if (!(v->data = (int *) realloc(v->data, newCapacity * sizeof(int)))) {
         fprintf(stderr, "bad alloc ");
         exit(1);
     } else if (newCapacity == 0) {
         v->data = NULL;
         v->size = newCapacity;
-    } else {
-        v->data = buffer;
-        if (newCapacity < v->size)
-            v->size = newCapacity;
-    }
+    } else if (newCapacity < v->size)
+        v->size = newCapacity;
     v->capacity = newCapacity;
-    free(buffer);
 }
 
 void clear(vector *v) {
