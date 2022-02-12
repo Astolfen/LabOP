@@ -7,3 +7,9 @@ int compare_ints(const void *a, const void *b) {
     if (arg1 > arg2) return 1;
     return 0;
 }
+
+int swap_int(int *a, int *b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}

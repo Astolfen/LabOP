@@ -1,13 +1,16 @@
 #include "libs/data_structures/matrix/matrix.h"
 
 int main() {
-    matrix *m = getMemArrayOfMatrices(2, 2, 2);
+    matrix m = getMemMatrix(2, 2);
 
-    inputMatrices(m, 2);
+    inputMatrix(m);
 
-    outputMatrices(m, 2);
+    swapRows(m, 1, 2);
+    swapColumns(m, 1, 2);
 
-    freeMemMatrices(m,2);
+    outputMatrix(m);
+
+    freeMemMatrix(m);
 
     return 0;
 }
