@@ -1,6 +1,7 @@
 #ifndef INC_MATRIX_H
 #define INC_MATRIX_H
 
+#include <stdio.h>
 #include <malloc.h>
 
 typedef struct matrix {
@@ -35,5 +36,23 @@ void freeMemMatrix(matrix m);
 /// \param ms pointer to an array of matrices
 /// \param nMatrices size of array ms
 void freeMemMatrices(matrix *ms, int nMatrices);
+
+/// Input matrix m
+/// \param m structure matrix
+void inputMatrix(matrix m);
+
+/// Input array of matrices ms
+/// \param ms pointer to an array of matrices
+/// \param nMatrices size of array ms
+void inputMatrices(matrix *ms, int nMatrices);
+
+/// Output matrix m
+/// \param m structure matrix
+void outputMatrix(matrix m);
+
+/// Output array of matrices ms
+/// \param ms pointer to an array of matrices
+/// \param nMatrices size of array ms
+void outputMatrices(matrix *ms, int nMatrices);
 
 #endif
