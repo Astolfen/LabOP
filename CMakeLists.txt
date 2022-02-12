@@ -11,7 +11,8 @@ add_executable(untitled main.c
         libs/data_structures/ordered_array_set/ordered_array_set.c
         libs/data_structures/ordered_array_set/ordered_array_set.h
         libs/data_structures/vector/vector.c libs/data_structures/vector/vector.h
-        libs/data_structures/void_vector/void_vector.c libs/data_structures/void_vector/void_vector.h)
+        libs/data_structures/void_vector/void_vector.c libs/data_structures/void_vector/void_vector.h
+        libs/data_structures/matrix/matrix.c libs/data_structures/matrix/matrix.h)
 
 add_subdirectory(libs)
 target_link_libraries(untitled algorithms)
