@@ -1,7 +1,6 @@
 #ifndef INC_MATRIX_H
 #define INC_MATRIX_H
 
-#include <stdio.h>
 #include <malloc.h>
 #include "../../algorithms/algorithm.h"
 
@@ -67,5 +66,15 @@ void swapRows(matrix m, int i1, int i2);
 /// \param j1 colum number
 /// \param j2 colum number
 void swapColumns(matrix m, int j1, int j2);
+
+/// Sorting by inserting rows of the matrix m by non-growth by criterion criteria
+/// \param m structure matrix
+/// \param criteria function of array processing
+void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int));
+
+/// Sorting by inserting columns of the matrix m by non-growth by criterion
+/// \param m structure matrix
+/// \param criteria function of array processing
+void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int));
 
 #endif
