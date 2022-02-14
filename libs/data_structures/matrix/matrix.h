@@ -97,4 +97,8 @@ bool isEMatrix(matrix m);
 /// \return true or false
 bool isSymmetricMatrix(matrix m);
 
+/// Transposes a square matrix m
+/// \param m structure matrix
+void transposeSquareMatrix(matrix m);
+
 #endif

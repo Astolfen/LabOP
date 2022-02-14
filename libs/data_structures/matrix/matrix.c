@@ -1,6 +1,10 @@
 #include "matrix.h"
 
 matrix getMemMatrix(int nRows, int nCols) {
+    if (nRows == 0 || nCols == 0){
+        fprintf(stderr, "men wtf. why u screwing around? ");
+        exit(1);
+    }
     int **values = (int **) malloc(sizeof(int *) * nRows);
     if (values == NULL) {
         fprintf(stderr, "bad alloc ");
@@ -14,6 +18,10 @@ matrix getMemMatrix(int nRows, int nCols) {
 }
 
 matrix *getMemArrayOfMatrices(int nMatrices, int nRows, int nCols) {
+    if (nMatrices == 0){
+        fprintf(stderr, "men wtf. why u screwing around? ");
+        exit(1);
+    }
     matrix *ms = (matrix *) malloc(sizeof(matrix) * nMatrices);
     if (ms == NULL) {
         fprintf(stderr, "bad alloc ");
@@ -148,4 +156,14 @@ bool isSymmetricMatrix(matrix m) {
             if (m.values[i][j] != m.values[j][i])
                 return false;
     return true;
+}
+
+void transposeSquareMatrix(matrix m) {
+    if (!isSquareMatrix(m)) {
+        fprintf(stderr, "matrix is not square");
+        exit(1);
+    }
+    for (int i = 0; i < m.nRows; i++)
+        for (int j = i + 1; j < m.nCols; j++)
+            swap_int(&m.values[i][j], &m.values[j][i]);
 }
