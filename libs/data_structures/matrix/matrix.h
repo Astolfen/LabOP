@@ -101,4 +101,20 @@ bool isSymmetricMatrix(matrix m);
 /// \param m structure matrix
 void transposeSquareMatrix(matrix m);
 
+/// Finds the minimum in the matrix m
+/// \param m structure matrix
+/// \return structure position
+position getMinValuePos(matrix m);
+
+/// Finds the maximum in the matrix m
+/// \param m structure matrix
+/// \return structure position
+position getMaxValuePos(matrix m);
+
+//for test
+matrix createMatrixFromArray(const int *a, int nRows, int nCols);
+
+//for test
+matrix *createArrayOfMatrixFromArray(const int *values, int nMatrices, int nRows, int nCols);
+
 #endif

@@ -1,8 +1,8 @@
 #include "matrix.h"
 
 matrix getMemMatrix(int nRows, int nCols) {
-    if (nRows == 0 || nCols == 0){
-        fprintf(stderr, "men wtf. why u screwing around? ");
+    if (nRows == 0 || nCols == 0) {
+        fprintf(stderr, "men wtf. Don't be silly. ");
         exit(1);
     }
     int **values = (int **) malloc(sizeof(int *) * nRows);
@@ -18,8 +18,8 @@ matrix getMemMatrix(int nRows, int nCols) {
 }
 
 matrix *getMemArrayOfMatrices(int nMatrices, int nRows, int nCols) {
-    if (nMatrices == 0){
-        fprintf(stderr, "men wtf. why u screwing around? ");
+    if (nMatrices == 0) {
+        fprintf(stderr, "men wtf. Don't be silly. ");
         exit(1);
     }
     matrix *ms = (matrix *) malloc(sizeof(matrix) * nMatrices);
@@ -166,4 +166,51 @@ void transposeSquareMatrix(matrix m) {
     for (int i = 0; i < m.nRows; i++)
         for (int j = i + 1; j < m.nCols; j++)
             swap_int(&m.values[i][j], &m.values[j][i]);
+}
+
+position getMinValuePos(matrix m) {
+    int minPosI = 0;
+    int minPosJ = 0;
+    int min = m.values[minPosI][minPosJ];
+    for (int i = 0; i < m.nRows; i++)
+        for (int j = 0; j < m.nCols; j++)
+            if (min > m.values[i][j]) {
+                minPosI = i;
+                minPosJ = j;
+                min = m.values[minPosI][minPosJ];
+            }
+    return (position) {minPosI, minPosJ};
+}
+
+position getMaxValuePos(matrix m) {
+    int maxPosI = 0;
+    int maxPosJ = 0;
+    int max = m.values[maxPosI][maxPosJ];
+    for (int i = 0; i < m.nRows; i++)
+        for (int j = 0; j < m.nCols; j++)
+            if (max < m.values[i][j]) {
+                maxPosI = i;
+                maxPosJ = j;
+                max = m.values[maxPosI][maxPosJ];
+            }
+    return (position) {maxPosI, maxPosJ};
+}
+
+matrix createMatrixFromArray(const int *a, int nRows, int nCols) {
+    matrix m = getMemMatrix(nRows, nCols);
+    int k = 0;
+    for (int i = 0; i < nRows; i++)
+        for (int j = 0; j < nCols; j++)
+            m.values[i][j] = a[k++];
+    return m;
+}
+
+matrix *createArrayOfMatrixFromArray(const int *a, int nMatrices, int nRows, int nCols) {
+    matrix *ms = getMemArrayOfMatrices(nMatrices, nRows, nCols);
+    int l = 0;
+    for (int k = 0; k < nMatrices; k++)
+        for (int i = 0; i < nRows; i++)
+            for (int j = 0; j < nCols; j++)
+                ms[k].values[i][j] = a[l++];
+    return ms;
 }
