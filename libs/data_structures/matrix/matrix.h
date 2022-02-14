@@ -1,7 +1,6 @@
 #ifndef INC_MATRIX_H
 #define INC_MATRIX_H
 
-#include <malloc.h>
 #include "../../algorithms/algorithm.h"
 
 typedef struct matrix {
@@ -57,14 +56,14 @@ void outputMatrices(matrix *ms, int nMatrices);
 
 /// Exchange of rows with numbers i1 and i2 in the matrix m
 /// \param m structure matrix
-/// \param i1 rows number
-/// \param i2 rows number
+/// \param i1 rows index
+/// \param i2 rows index
 void swapRows(matrix m, int i1, int i2);
 
 /// Exchange of columns with numbers j1 and j2 in the matrix m
 /// \param m structure matrix
-/// \param j1 colum number
-/// \param j2 colum number
+/// \param j1 colum index
+/// \param j2 colum index
 void swapColumns(matrix m, int j1, int j2);
 
 /// Sorting by inserting rows of the matrix m by non-growth by criterion criteria
@@ -76,5 +75,26 @@ void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int))
 /// \param m structure matrix
 /// \param criteria function of array processing
 void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int));
+
+/// Checks whether the matrix m is square
+/// \param m structure matrix
+/// \return true or false
+bool isSquareMatrix(matrix m);
+
+/// Checks whether the matrix m1 and matrix m2 is equal
+/// \param m1 structure matrix
+/// \param m2 structure matrix
+/// \return true or false
+bool twoMatricesEqual(matrix m1, matrix m2);
+
+/// Checks whether the matrix m is identity matrix
+/// \param m structure matrix
+/// \return true or false
+bool isEMatrix(matrix m);
+
+/// Checks whether the matrix m is symmetric
+/// \param m structure matrix
+/// \return true or false
+bool isSymmetricMatrix(matrix m);
 
 #endif
