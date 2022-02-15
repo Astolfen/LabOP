@@ -57,7 +57,7 @@ void unordered_array_set_insert(unordered_array_set *set, int value) {
 void unordered_array_set_deleteElement(unordered_array_set *set, int value) {
     size_t posFinNumber = unordered_array_set_in(set, value);
     if (posFinNumber != set->size)
-        deleteByPosUnsaveOrder_(set, &set->size, posFinNumber);
+        deleteByPosUnsaveOrder_(set->data, &set->size, posFinNumber);
 }
 
 unordered_array_set unordered_array_set_union(unordered_array_set set1, unordered_array_set set2) {

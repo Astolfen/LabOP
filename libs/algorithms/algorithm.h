@@ -14,8 +14,4 @@ void insertSort(int *a, int n);
 
 void ErrorBadAlloc(const int *a);
 
-int abs_int(int a) {
-    return a > 0 ? a : -a;
-}
-
 #endif
