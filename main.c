@@ -7,6 +7,13 @@ int getMax(int *a, int n) {
             max = a[i];
 }
 
+int getMin(int *a, int n) {
+    int min = a[0];
+    for (int i = 1; i < n; ++i)
+        if (a[i] < min)
+            min = a[i];
+}
+
 void firstTask(matrix m) {
     position p1 = getMaxValuePos(m);
     position p2 = getMaxValuePos(m);
@@ -17,6 +24,11 @@ void firstTask(matrix m) {
 void secondTask(matrix m) {
     insertionSortRowsMatrixByRowCriteria(m, getMax);
 }
+
+void thirdTask(matrix m) {
+    insertionSortColsMatrixByColCriteria(m, getMin);
+}
+
 
 int main() {
 
