@@ -1,16 +1,13 @@
 #include "libs/data_structures/matrix/matrix.h"
 
+void firstTask(matrix m) {
+    position p1 = getMaxValuePos(m);
+    position p2 = getMaxValuePos(m);
+    if (p1.rowIndex != p2.rowIndex)
+        swapRows(m, p1.rowIndex, p2.rowIndex);
+}
+
 int main() {
-    matrix m = getMemMatrix(2, 2);
-
-    inputMatrix(m);
-
-    swapRows(m, 1, 2);
-    swapColumns(m, 1, 2);
-
-    outputMatrix(m);
-
-    freeMemMatrix(m);
 
     return 0;
 }
