@@ -113,6 +113,24 @@ long long sevenTask(matrix m) {
     return sum;
 }
 
+int eighthTask(matrix m) {
+    position maxP = getMaxValuePos(m);
+    int i = maxP.rowIndex;
+    int l = maxP.colIndex;
+    int r = maxP.colIndex;
+    int min = m.values[i][l];
+    while (i >= 0) {
+        l = l == 0 ? l : (l - 1);
+        r = r == m.nCols - 1 ? r : (r + 1);
+        int newMin = getMin(m.values[i] + l, r - l - 1);
+        if (min > newMin)
+            min = newMin;
+        i--;
+    }
+    return min;
+}
+
+
 int main() {
     matrix m1 = createMatrixFromArray((int[]) {1, 2, 3,
                                                2, 3, 4,
