@@ -1,5 +1,9 @@
 #include "libs/data_structures/matrix/matrix.h"
 
+int max2_int(int a, int b) {
+    return a > b ? a : b;
+}
+
 int getMax(int *a, int n) {
     int max = a[0];
     for (int i = 1; i < n; ++i)
@@ -90,6 +94,24 @@ bool sixTask(matrix m1, matrix m2) {
     return isEMatrix(mul);
 }
 
+int maxInDiagonal(matrix m, int i, int j) {
+    int max = m.values[i][j];
+    while (i < m.nCols && j < m.nRows) {
+        max = max2_int(max, m.values[i][j]);
+        i++;
+        j++;
+    }
+    return max;
+}
+
+long long sevenTask(matrix m) {
+    long long sum = 0;
+    for (int i = 1; i < m.nCols; i++)
+        sum += maxInDiagonal(m, 0, i);
+    for (int i = 1; i < m.nRows; i++)
+        sum += maxInDiagonal(m, i, 0);
+    return sum;
+}
 
 int main() {
     matrix m1 = createMatrixFromArray((int[]) {1, 2, 3,
