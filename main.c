@@ -85,6 +85,11 @@ void fiveTask(matrix m, int nRows, int nCols) {
     free(a);
 }
 
+bool sixTask(matrix m1, matrix m2) {
+    matrix mul = mulMatrices(m1, m2);
+    return isEMatrix(mul);
+}
+
 
 int main() {
     matrix m1 = createMatrixFromArray((int[]) {1, 2, 3,
