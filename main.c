@@ -52,9 +52,39 @@ void thirdTask(matrix m) {
 }
 
 void fourthTask(matrix *m) {
-    if (isSymmetricMatrix(*m))
-        *m = mulMatrices(*m, *m);
+    if (isSymmetricMatrix(*m)) {
+        matrix mRes = mulMatrices(*m, *m);
+        freeMemMatrix(*m);
+        *m = mRes;
+    }
 }
+
+bool isUnique(long long *a, int n) {
+    for (int i = 0; i < n; i++)
+        for (int j = i + 1; j < n; j++)
+            if (a[i] == a[j])
+                return false;
+    return true;
+}
+
+long long getSum(int *a, int n) {
+    long long sum = 0;
+    for (int i = 0; i < n; i++)
+        sum += a[i];
+    return sum;
+}
+
+void fiveTask(matrix m, int nRows, int nCols) {
+    long long *a = (long long *) malloc(sizeof(long long) * nRows);
+    for (int i = 0; i < nRows; i++)
+        a[i] = getSum(m.values[i], nCols);
+
+    if (isUnique(a, nRows))
+        transposeSquareMatrix(m);
+
+    free(a);
+}
+
 
 int main() {
     matrix m1 = createMatrixFromArray((int[]) {1, 2, 3,
