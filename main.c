@@ -52,7 +52,7 @@ void secondTask(matrix m) {
 }
 
 void thirdTask(matrix m) {
-    insertionSortColsMatrixByColCriteria(m, getMin);
+    choiceSortColsMatrixByColCriteria(m, getMin);
 }
 
 void fourthTask(matrix *m) {
@@ -91,7 +91,9 @@ void fiveTask(matrix m, int nRows, int nCols) {
 
 bool sixTask(matrix m1, matrix m2) {
     matrix mul = mulMatrices(m1, m2);
-    return isEMatrix(mul);
+    bool res = isEMatrix(mul);
+    freeMemMatrix(mul);
+    return res;
 }
 
 int maxInDiagonal(matrix m, int i, int j) {

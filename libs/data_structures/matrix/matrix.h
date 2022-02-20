@@ -2,6 +2,7 @@
 #define INC_MATRIX_H
 
 #include "../../algorithms/algorithm.h"
+#include <memory.h>
 
 typedef struct matrix {
     int **values;   //элементы матрицы
@@ -74,7 +75,7 @@ void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int))
 /// Sorting by inserting columns of the matrix m by non-growth by criterion
 /// \param m structure matrix
 /// \param criteria function of array processing
-void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int));
+void choiceSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int));
 
 /// Checks whether the matrix m is square
 /// \param m structure matrix

@@ -98,7 +98,7 @@ void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int))
     free(a);
 }
 
-void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int)) {
+void choiceSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int)) {
     int *a = (int *) malloc(sizeof(int) * m.nCols);
     ErrorBadAlloc(a);
     for (int i = 0; i < m.nCols; i++) {
@@ -109,14 +109,11 @@ void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int))
         a[i] = criteria(copyCols, m.nRows);
         free(copyCols);
     }
-    //сортировка вставкой
-    for (int i = 1; i < m.nCols; i++) {
-        int j = i;
-        while (a[j] < a[j - 1] && j > 0) {
-            swap_int(&a[j], &a[j - 1]);
-            swapColumns(m, j, j - 1);
-            j--;
-        }
+    //сортировка выбором
+    for (int i = 0; i < m.nCols; i++) {
+        int minPos = getMinIndex(a + i, m.nCols - i);
+        swap_int(&a[i], &a[minPos]);
+        swapColumns(m, i, minPos);
     }
     free(a);
 }
@@ -129,9 +126,8 @@ bool twoMatricesEqual(matrix m1, matrix m2) {
     if (m1.nRows != m2.nRows || m1.nCols != m2.nCols)
         return false;
     for (int i = 0; i < m1.nRows; i++)
-        for (int j = 0; j < m1.nCols; j++)
-            if (m1.values[i][j] != m2.values[i][j])
-                return false;
+        if (!memcmp(m1.values[i], m2.values[i], sizeof(int) * m1.nCols))
+            return false;
     return true;
 }
 
