@@ -5,10 +5,15 @@
 #include <stdbool.h>
 #include <malloc.h>
 #include <stdio.h>
+#include <math.h>
 
 int compare_ints(const void *a, const void *b);
 
-int swap_int(int *a, int *b);
+int cmp_long_long(const void *pa, const void *pb);
+
+void swap_int(int *a, int *b);
+
+void swap_float(float *a, float *b);
 
 void insertSort(int *a, int n);
 

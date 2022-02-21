@@ -8,8 +8,22 @@ int compare_ints(const void *a, const void *b) {
     return 0;
 }
 
-int swap_int(int *a, int *b) {
+int cmp_long_long(const void *pa, const void *pb) {
+    long long arg1 = *(const long long *) pa;
+    long long arg2 = *(const long long *) pb;
+    if (arg1 < arg2) return -1;
+    if (arg1 > arg2) return 1;
+    return 0;
+}
+
+void swap_int(int *a, int *b) {
     int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+void swap_float(float *a, float *b) {
+    float t = *a;
     *a = *b;
     *b = t;
 }
@@ -31,7 +45,7 @@ void ErrorBadAlloc(const int *a) {
     }
 }
 
-int getMinIndex(const int *a, int n){
+int getMinIndex(const int *a, int n) {
     int min = a[0];
     for (int i = 1; i < n; i++)
         if (a[min] > a[i])
