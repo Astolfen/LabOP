@@ -10,7 +10,8 @@
 //#define TASK8
 //#define TASK9
 //#define TASK10
-#define TASK11
+//#define TASK11
+#define TASK12
 
 int max2_int(int a, int b) {
     return a > b ? a : b;
@@ -268,6 +269,19 @@ int main() {
     }
 
     printf("\n%d", count);
+    freeMemMatrix(m);
+#endif
+
+#ifdef TASK12
+    matrix m = getMemMatrix(4, 4);
+    inputMatrix(m);
+
+    assert(isSquareMatrix(m));
+    int minElementCols = getMinValuePos(m).colIndex;
+    for (int i = m.nRows - 1; i >= 0; i++)
+        m.values[m.nRows - 2][i] = m.values[i][minElementCols];
+
+    outputMatrix(m);
     freeMemMatrix(m);
 #endif
 

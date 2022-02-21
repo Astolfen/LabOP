@@ -6,6 +6,7 @@
 #include <malloc.h>
 #include <stdio.h>
 #include <math.h>
+#include <assert.h>
 
 int compare_ints(const void *a, const void *b);
 
