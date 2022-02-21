@@ -97,6 +97,17 @@ void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, in
     free(a);
 }
 
+int countNUnique(long long *a, int n) {
+    int count = 1;
+    long long last = a[0];
+    for (int i = 1; i < n; i++)
+        if (a[i] != last) {
+            count++;
+            last = a[i];
+        }
+    return count;
+}
+
 int main() {
 #ifdef TASK1
     matrix m = getMemMatrix(3, 4);
@@ -220,7 +231,17 @@ int main() {
     matrix m = getMemMatrix(3, 4);
     inputMatrix(m);
 
+    long long *a = (long long *) malloc(sizeof(long long) * m.nRows);
+    for (int i = 0; i < m.nRows; i++) {
+        long long sum = 0;
+        for (int j = 0; j < m.nCols; j++)
+            sum += m.values[i][j];
+        a[i] = sum;
+    }
+    qsort(a, m.nRows, sizeof(long long), cmp_long_long);
 
+    int res = countNUnique(a, m.nRows);
+    printf("\n%d", res);
 
     freeMemMatrix(m);
 #endif
