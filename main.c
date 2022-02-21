@@ -9,7 +9,8 @@
 //#define TASK7
 //#define TASK8
 //#define TASK9
-#define TASK10
+//#define TASK10
+#define TASK11
 
 int max2_int(int a, int b) {
     return a > b ? a : b;
@@ -106,6 +107,17 @@ int countNUnique(long long *a, int n) {
             last = a[i];
         }
     return count;
+}
+
+bool checkHaveUniqueElement(matrix m, int j) {
+    int max = m.values[0][j];
+    int sum = 0;
+    for (int i = 0; i < m.nRows; i++) {
+        sum += m.values[i][j];
+        if (max < m.values[i][j])
+            max = m.values[i][j];
+    }
+    return sum - max < max;
 }
 
 int main() {
@@ -243,6 +255,19 @@ int main() {
     int res = countNUnique(a, m.nRows);
     printf("\n%d", res);
 
+    freeMemMatrix(m);
+#endif
+
+#ifdef TASK11
+    matrix m = getMemMatrix(3, 4);
+    inputMatrix(m);
+
+    int count = 0;
+    for (int i = 0; i < m.nCols; i++) {
+        count += checkHaveUniqueElement(m, i);
+    }
+
+    printf("\n%d", count);
     freeMemMatrix(m);
 #endif
 
