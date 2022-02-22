@@ -45,11 +45,10 @@ void ErrorBadAlloc(const int *a) {
     }
 }
 
-int getMinIndex(const int *a, int n) {
-    int min = a[0];
-    for (int i = 1; i < n; i++)
+int getMinIndex(const int *a, int n ,int index) {
+    int min = index;
+    for (int i = index; i < n; i++)
         if (a[min] > a[i])
             min = i;
     return min;
-
 }

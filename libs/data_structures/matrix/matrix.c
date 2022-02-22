@@ -71,12 +71,20 @@ void outputMatrices(matrix *ms, int nMatrices) {
 }
 
 void swapRows(matrix m, int i1, int i2) {
+    if (i1 <= 0 || i2 <= 0) {
+        fprintf(stderr, "one index does not exist ");
+        exit(1);
+    }
     int *t = m.values[i1 - 1];
     m.values[i1 - 1] = m.values[i2 - 1];
     m.values[i2 - 1] = t;
 }
 
 void swapColumns(matrix m, int j1, int j2) {
+    if (j1 <= 0 || j2 <= 0) {
+        fprintf(stderr, "one index does not exist ");
+        exit(1);
+    }
     for (int i = 0; i < m.nRows; i++)
         swap_int(&m.values[i][j1 - 1], &m.values[i][j2 - 1]);
 }
@@ -91,7 +99,7 @@ void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int))
         int j = i;
         while (a[j] < a[j - 1] && j > 0) {
             swap_int(&a[j], &a[j - 1]);
-            swapRows(m, j, j - 1);
+            swapRows(m, j + 1, j);
             j--;
         }
     }
@@ -111,9 +119,9 @@ void choiceSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int)) {
     }
     //сортировка выбором
     for (int i = 0; i < m.nCols; i++) {
-        int minPos = getMinIndex(a + i, m.nCols - i);
+        int minPos = getMinIndex(a, m.nCols, i);
         swap_int(&a[i], &a[minPos]);
-        swapColumns(m, i, minPos);
+        swapColumns(m, i + 1, minPos + 1);
     }
     free(a);
 }
@@ -126,7 +134,7 @@ bool twoMatricesEqual(matrix m1, matrix m2) {
     if (m1.nRows != m2.nRows || m1.nCols != m2.nCols)
         return false;
     for (int i = 0; i < m1.nRows; i++)
-        if (!memcmp(m1.values[i], m2.values[i], sizeof(int) * m1.nCols))
+        if (memcmp(m1.values[i], m2.values[i], sizeof(int) * m1.nCols))
             return false;
     return true;
 }
@@ -175,7 +183,7 @@ position getMinValuePos(matrix m) {
                 minPosJ = j;
                 min = m.values[minPosI][minPosJ];
             }
-    return (position) {minPosI, minPosJ};
+    return (position) {minPosI + 1, minPosJ + 1};
 }
 
 position getMaxValuePos(matrix m) {
@@ -189,7 +197,7 @@ position getMaxValuePos(matrix m) {
                 maxPosJ = j;
                 max = m.values[maxPosI][maxPosJ];
             }
-    return (position) {maxPosI, maxPosJ};
+    return (position) {maxPosI + 1, maxPosJ + 1};
 }
 
 matrix createMatrixFromArray(const int *a, int nRows, int nCols) {
@@ -222,7 +230,7 @@ matrixf getMemMatrixF(int nRows, int nCols) {
         exit(1);
     }
     for (int i = 0; i < nRows; i++) {
-        values[i] = (float *) malloc(sizeof(float ) * nCols);
+        values[i] = (float *) malloc(sizeof(float) * nCols);
         if (values[i] == NULL) {
             fprintf(stderr, "bad alloc ");
             exit(1);

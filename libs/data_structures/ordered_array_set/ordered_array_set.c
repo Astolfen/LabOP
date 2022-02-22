@@ -53,7 +53,7 @@ void ordered_array_set_insert(ordered_array_set *set, int value) {
 }
 
 void ordered_array_set_deleteElement(ordered_array_set *set, int value) {
-    size_t pos = ordered_array_set_in(&set, value);
+    size_t pos = ordered_array_set_in(set, value);
     if (pos != set->size)
         deleteByPosSaveOrder_(set->data, &set->size, pos);
 }

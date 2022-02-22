@@ -20,6 +20,6 @@ void insertSort(int *a, int n);
 
 void ErrorBadAlloc(const int *a);
 
-int getMinIndex(const int *a, int n);
+int getMinIndex(const int *a, int n,int index);
 
 #endif

@@ -1,6 +1,8 @@
 #include "libs/data_structures/matrix/matrix.h"
+#include "libs/data_structures/matrix/matrix_test.h"
 #include <float.h>
 
+//#define TEST
 //#define TASK1
 //#define TASK2
 //#define TASK3
@@ -180,6 +182,10 @@ float getMaxValueFAbs(matrixf m) {
 }
 
 int main() {
+#ifdef TEST
+    test_matrix();
+#endif
+
 #ifdef TASK1
     matrix m = getMemMatrix(3, 4);
     inputMatrix(m);
