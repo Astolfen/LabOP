@@ -11,7 +11,8 @@
 //#define TASK9
 //#define TASK10
 //#define TASK11
-#define TASK12
+//#define TASK12
+#define TASK13
 
 int max2_int(int a, int b) {
     return a > b ? a : b;
@@ -119,6 +120,20 @@ bool checkHaveUniqueElement(matrix m, int j) {
             max = m.values[i][j];
     }
     return sum - max < max;
+}
+
+bool isNonDescendingSorted(int *a, int n) {
+    for (int i = 1; i < n; i++)
+        if (a[i - 1] > a[i])
+            return false;
+    return true;
+}
+
+bool hasAllNonDescendingRows(matrix m) {
+    for (int i = 0; i < m.nRows; i++)
+        if (!isNonDescendingSorted(m.values[i], m.nCols))
+            return false;
+    return true;
 }
 
 int main() {
@@ -283,6 +298,21 @@ int main() {
 
     outputMatrix(m);
     freeMemMatrix(m);
+#endif
+
+#ifdef TASK13
+    int n = 4;
+    matrix *ms = getMemArrayOfMatrices(n, 4, 4);
+    inputMatrices(ms, n);
+
+    int count = 0;
+    for (int i = 0; i < n; i++)
+        if (hasAllNonDescendingRows(ms[i]))
+            count += 1;
+
+    printf("%d", count);
+    //outputMatrices(ms, n);
+    freeMemMatrices(ms, n);
 #endif
 
     return 0;
