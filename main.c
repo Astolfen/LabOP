@@ -12,7 +12,9 @@
 //#define TASK10
 //#define TASK11
 //#define TASK12
-#define TASK13
+//#define TASK13
+#define TASK14
+#define TASK15
 
 int max2_int(int a, int b) {
     return a > b ? a : b;
@@ -134,6 +136,22 @@ bool hasAllNonDescendingRows(matrix m) {
         if (!isNonDescendingSorted(m.values[i], m.nCols))
             return false;
     return true;
+}
+
+int countValues(const int *a, int n, int value) {
+    int count = 0;
+    for (int i = 0; i < n; i++)
+        if (a[i] == value)
+            count += 1;
+    return count;
+}
+
+int countZeroRows(matrix m) {
+    int count = 0;
+    for (int i = 0; i < m.nRows; i++)
+        if (countValues(m.values[i], m.nCols, 0) == m.nCols)
+            count += 1;
+    return count;
 }
 
 int main() {
@@ -312,6 +330,32 @@ int main() {
 
     printf("%d", count);
     //outputMatrices(ms, n);
+    freeMemMatrices(ms, n);
+#endif
+
+#ifdef TASK14
+    int n = 4;
+    matrix *ms = getMemArrayOfMatrices(n, 4, 4);
+    inputMatrices(ms, n);
+
+    int a[n];
+    int sizeA = 0;
+    int maxZero = 0;
+    for (int i = 0; i < n; i++) {
+        int count = countZeroRows(ms[i]);
+        if (sizeA == 0 || maxZero < count) {
+            sizeA = 1;
+            a[sizeA - 1] = i;
+        } else if (count == maxZero) {
+            sizeA += 1;
+            a[sizeA - 1] = i;
+        }
+    }
+
+    for (int i = 0; i < sizeA; i++) {
+        outputMatrix(ms[a[i]]);
+        printf("\n");
+    }
     freeMemMatrices(ms, n);
 #endif
 
