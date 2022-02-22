@@ -210,3 +210,76 @@ matrix *createArrayOfMatrixFromArray(const int *a, int nMatrices, int nRows, int
                 ms[k].values[i][j] = a[l++];
     return ms;
 }
+
+matrixf getMemMatrixF(int nRows, int nCols) {
+    if (nRows == 0 || nCols == 0) {
+        fprintf(stderr, "men wtf. Don't be silly. ");
+        exit(1);
+    }
+    float **values = (float **) malloc(sizeof(float *) * nRows);
+    if (values == NULL) {
+        fprintf(stderr, "bad alloc ");
+        exit(1);
+    }
+    for (int i = 0; i < nRows; i++) {
+        values[i] = (float *) malloc(sizeof(float ) * nCols);
+        if (values[i] == NULL) {
+            fprintf(stderr, "bad alloc ");
+            exit(1);
+        }
+    }
+    return (matrixf) {values, nRows, nCols};
+}
+
+matrixf *getMemArrayOfMatricesF(int nMatrices, int nRows, int nCols) {
+    if (nMatrices == 0) {
+        fprintf(stderr, "men wtf. Don't be silly. ");
+        exit(1);
+    }
+    matrixf *ms = (matrixf *) malloc(sizeof(matrixf) * nMatrices);
+    if (ms == NULL) {
+        fprintf(stderr, "bad alloc ");
+        exit(1);
+    }
+    for (int i = 0; i < nMatrices; i++)
+        ms[i] = getMemMatrixF(nRows, nCols);
+    return ms;
+}
+
+void freeMemMatrixF(matrixf m) {
+    for (int i = 0; i < m.nRows; i++)
+        free(m.values[i]);
+    free(m.values);
+}
+
+void freeMemMatricesF(matrixf *ms, int nMatrices) {
+    for (int i = 0; i < nMatrices; i++)
+        freeMemMatrixF(ms[i]);
+    free(ms);
+}
+
+void inputMatrixF(matrixf m) {
+    for (int i = 0; i < m.nRows; i++)
+        for (int j = 0; j < m.nCols; j++)
+            scanf("%f", &m.values[i][j]);
+}
+
+void inputMatricesF(matrixf *ms, int nMatrices) {
+    for (int i = 0; i < nMatrices; i++)
+        inputMatrixF(ms[i]);
+}
+
+void outputMatrixF(matrixf m) {
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = 0; j < m.nCols; j++)
+            printf("%f ", m.values[i][j]);
+        printf("\n");
+    }
+}
+
+void outputMatricesF(matrixf *ms, int nMatrices) {
+    for (int i = 0; i < nMatrices; i++) {
+        printf("Matrix %d\n", i + 1);
+        outputMatrixF(ms[i]);
+    }
+}

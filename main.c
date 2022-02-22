@@ -1,4 +1,5 @@
 #include "libs/data_structures/matrix/matrix.h"
+#include <float.h>
 
 //#define TASK1
 //#define TASK2
@@ -13,8 +14,8 @@
 //#define TASK11
 //#define TASK12
 //#define TASK13
-#define TASK14
-#define TASK15
+//#define TASK14
+//#define TASK15
 
 int max2_int(int a, int b) {
     return a > b ? a : b;
@@ -73,6 +74,16 @@ long long getSum(int *a, int n) {
     for (int i = 0; i < n; i++)
         sum += a[i];
     return sum;
+}
+
+int maxInDiagonal(matrix m, int i, int j) {
+    int max = m.values[i][j];
+    while (i < m.nCols && j < m.nRows) {
+        max = max2_int(max, m.values[i][j]);
+        i++;
+        j++;
+    }
+    return max;
 }
 
 float getDistance(int *a, int n) {
@@ -152,6 +163,20 @@ int countZeroRows(matrix m) {
         if (countValues(m.values[i], m.nCols, 0) == m.nCols)
             count += 1;
     return count;
+}
+
+float getMaxValueFAbs(matrixf m) {
+    int maxPosI = 0;
+    int maxPosJ = 0;
+    float max = fabsf(m.values[maxPosI][maxPosJ]);
+    for (int i = 0; i < m.nRows; i++)
+        for (int j = 0; j < m.nCols; j++)
+            if (max < fabsf(m.values[i][j])) {
+                maxPosI = i;
+                maxPosJ = j;
+                max = fabsf(m.values[maxPosI][maxPosJ]);
+            }
+    return max;
 }
 
 int main() {
@@ -236,8 +261,18 @@ int main() {
     printf("\n%d", res);
 #endif
 
-#ifdef TaSK7
-    //pls но
+#ifdef TASK7
+    matrix m = getMemMatrix(3, 4);
+    inputMatrix(m);
+
+    long long sum = 0;
+    for (int i = 1; i < m.nCols; i++)
+        sum += maxInDiagonal(m, 0, i);
+    for (int i = 1; i < m.nRows; i++)
+        sum += maxInDiagonal(m, i, 0);
+
+    printf("%lld", sum);
+    freeMemMatrix(m);
 #endif
 
 #ifdef TASK8
@@ -346,6 +381,7 @@ int main() {
         if (sizeA == 0 || maxZero < count) {
             sizeA = 1;
             a[sizeA - 1] = i;
+            maxZero = count;
         } else if (count == maxZero) {
             sizeA += 1;
             a[sizeA - 1] = i;
@@ -354,29 +390,34 @@ int main() {
 
     for (int i = 0; i < sizeA; i++) {
         outputMatrix(ms[a[i]]);
-        printf("\n");
     }
     freeMemMatrices(ms, n);
 #endif
 
+#ifdef TASK15
+    int n = 4;
+    matrixf *ms = getMemArrayOfMatricesF(n, 4, 4);
+    inputMatricesF(ms, n);
+
+    int a[n];
+    int sizeA = 0;
+    float minNorms = 0;
+    for (int i = 0; i < n; i++) {
+        float norms = getMaxValueFAbs(ms[i]);
+        if (sizeA == 0 || minNorms > norms) {
+            sizeA = 1;
+            a[sizeA - 1] = i;
+            minNorms = norms;
+        } else if (fabsf(norms - minNorms) < DBL_EPSILON) {
+            sizeA += 1;
+            a[sizeA - 1] = i;
+        }
+    }
+    for (int i = 0; i < sizeA; i++) {
+        outputMatrixF(ms[a[i]]);
+    }
+    freeMemMatricesF(ms, n);
+#endif
+
     return 0;
 }
-
-//int maxInDiagonal(matrix m, int i, int j) {
-//    int max = m.values[i][j];
-//    while (i < m.nCols && j < m.nRows) {
-//        max = max2_int(max, m.values[i][j]);
-//        i++;
-//        j++;
-//    }
-//    return max;
-//}
-//
-//long long sevenTask(matrix m) {
-//    long long sum = 0;
-//    for (int i = 1; i < m.nCols; i++)
-//        sum += maxInDiagonal(m, 0, i);
-//    for (int i = 1; i < m.nRows; i++)
-//        sum += maxInDiagonal(m, i, 0);
-//    return sum;
-//}

@@ -10,6 +10,12 @@ typedef struct matrix {
     int nCols;      //количество столбцов
 } matrix;
 
+typedef struct matrixf {
+    float **values;   //элементы матрицы
+    int nRows;      //количество рядов
+    int nCols;      //количество столбцов
+} matrixf;
+
 typedef struct position {
     int rowIndex;
     int colIndex;
@@ -117,5 +123,45 @@ matrix createMatrixFromArray(const int *a, int nRows, int nCols);
 
 //for test
 matrix *createArrayOfMatrixFromArray(const int *values, int nMatrices, int nRows, int nCols);
+
+/// Allocates memory for the matrix
+/// \param nRows volume of Rows
+/// \param nCols volume of Cols
+/// \return pointer to an array of pointers to arrays
+matrixf getMemMatrixF(int nRows, int nCols);
+
+/// Allocated memory for an array of matrices of size nRows, nCols consisting of nMatrices
+/// \param nMatrices size of end array
+/// \param nRows volume of Rows
+/// \param nCols volume of Cols
+/// \return pointer to an array Matrix
+matrixf *getMemArrayOfMatricesF(int nMatrices, int nRows, int nCols);
+
+/// Frees up memory occupied by a matrix
+/// \param m structure matrixf
+void freeMemMatrixF(matrixf m);
+
+/// Frees up memory occupied by a array of matrices consisting of nMatrices
+/// \param ms pointer to an array of matrices
+/// \param nMatrices size of array ms
+void freeMemMatricesF(matrixf *ms, int nMatrices);
+
+/// Input matrix m
+/// \param m structure matrixf
+void inputMatrixF(matrixf m);
+
+/// Input array of matrices ms
+/// \param ms pointer to an array of matrices
+/// \param nMatrices size of array ms
+void inputMatricesF(matrixf *ms, int nMatrices);
+
+/// Output matrix m
+/// \param m structure matrixf
+void outputMatrixF(matrixf m);
+
+/// Output array of matrices ms
+/// \param ms pointer to an array of matrices
+/// \param nMatrices size of array ms
+void outputMatricesF(matrixf *ms, int nMatrices);
 
 #endif
