@@ -78,16 +78,6 @@ long long getSum(int *a, int n) {
     return sum;
 }
 
-int maxInDiagonal(matrix m, int i, int j) {
-    int max = m.values[i][j];
-    while (i < m.nCols && j < m.nRows) {
-        max = max2_int(max, m.values[i][j]);
-        i++;
-        j++;
-    }
-    return max;
-}
-
 float getDistance(int *a, int n) {
     long long sum = 0;
     for (int i = 0; i < n; i++)
@@ -271,13 +261,26 @@ int main() {
     matrix m = getMemMatrix(3, 4);
     inputMatrix(m);
 
+    int n = m.nRows + m.nCols - 1;
+    int *a = (int *) calloc(n, sizeof(int));
+
+    int start_index = m.nRows - 1;
     long long sum = 0;
-    for (int i = 1; i < m.nCols; i++)
-        sum += maxInDiagonal(m, 0, i);
-    for (int i = 1; i < m.nRows; i++)
-        sum += maxInDiagonal(m, i, 0);
+    for (int i = 0; i < m.nRows; i++)
+        for (int j = 0; j < m.nCols; j++)
+            if (i != j) {
+                int iWrite = start_index + j - i;
+                if (i == 0 || j == 0)
+                    a[iWrite] = m.values[i][j];
+                else
+                    a[iWrite] = max2_int(a[iWrite], m.values[i][j]);
+            }
+
+    for (int i = 0; i < n; i++)
+        sum += a[i];
 
     printf("%lld", sum);
+    free(a);
     freeMemMatrix(m);
 #endif
 
