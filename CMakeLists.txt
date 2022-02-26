@@ -7,12 +7,7 @@ add_executable(untitled main.c
         libs/algorithms/array/array.c
         libs/algorithms/algorithm.c
         libs/data_structures/unordered_array_set/unordered_array_set.c
-        libs/data_structures/ordered_array_set/ordered_array_set.c
-        libs/data_structures/vector/vector.c
-        libs/data_structures/matrix/matrix.c
-        libs/data_structures/matrix/matrix_test.c
-        libs/data_structures/matrix/matrix_task.c
-        libs/data_structures/matrix/test_task.c)
+        libs/data_structures/ordered_array_set/ordered_array_set.c)
 
 add_subdirectory(libs)
 target_link_libraries(untitled algorithms)
