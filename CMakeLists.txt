@@ -9,7 +9,6 @@ add_executable(untitled main.c
         libs/data_structures/unordered_array_set/unordered_array_set.c
         libs/data_structures/ordered_array_set/ordered_array_set.c
         libs/data_structures/vector/vector.c
-        libs/data_structures/void_vector/void_vector.c
         libs/data_structures/matrix/matrix.c
         libs/data_structures/matrix/matrix_test.c
         libs/data_structures/matrix/matrix_task.c
