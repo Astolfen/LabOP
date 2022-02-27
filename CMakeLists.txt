@@ -9,6 +9,9 @@ add_executable(untitled main.c
         libs/data_structures/unordered_array_set/unordered_array_set.c
         libs/data_structures/ordered_array_set/ordered_array_set.c)
 
+add_library(str string/string_.c string/string_.h)
+
 add_subdirectory(libs)
 target_link_libraries(untitled algorithms)
 target_link_libraries(untitled data_structures)
+target_link_libraries(untitled str)
