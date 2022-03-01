@@ -24,3 +24,51 @@ char *findSpace(char *begin) {
         begin++;
     return begin;
 }
+
+char *findNonSpaceReverse(char *rbegin, const char *rend) {
+    while (rbegin != rend && isspace(*rbegin))
+        rbegin--;
+    return rbegin;
+}
+
+char *findSpaceReverse(char *rbegin, const char *rend) {
+    while (rbegin != rend && !isspace(*rbegin))
+        rbegin--;
+    return rbegin;
+}
+
+int strcmp(const char *lhs, const char *rhs) {
+    while (*lhs != '\0' && *lhs == *rhs) {
+        lhs++;
+        rhs++;
+    }
+    return (int) *lhs - (int) *rhs;
+}
+
+char *copy(const char *beginSource, const char *endSource, char *beginDestination) {
+    size_t num = endSource - beginSource;
+    memcpy(beginDestination, beginSource, num);
+    return beginDestination + num;
+}
+
+char *copyIf(char *beginSource, const char *endSource, char *beginDestination, int (*f)(int)) {
+    while (beginSource < endSource) {
+        if (f(*beginSource)) {
+            *beginDestination = *beginSource;
+            beginDestination++;
+        }
+        beginSource++;
+    }
+    return beginDestination;
+}
+
+char *copyIfReverse(char *rbeginSource, const char *rendSource, char *beginDestination, int (*f)(int)){
+    while (rbeginSource > rendSource) {
+        if (f(*rbeginSource)) {
+            *beginDestination = *rbeginSource;
+            beginDestination++;
+        }
+        rbeginSource--;
+    }
+    return beginDestination;
+}
