@@ -3,6 +3,7 @@
 
 #include "../string_.h"
 
+//переделать с поиском до пробела
 void removeExtraSpaces(char *s) {
     char *begin = s;
     while (*begin != '\0' && !isspace(*begin))

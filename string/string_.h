@@ -6,6 +6,16 @@
 #include <memory.h>
 #include <ctype.h>
 
+#define MAX_STRING_SIZE 100
+
+char _stringBuffer[MAX_STRING_SIZE + 1];
+
+typedef struct WordDescriptor {
+    char *begin; // позиция начала слова
+    char *end; // позиция первого символа, после последнего символа слова
+} WordDescriptor;
+
+
 /// Counts the number of characters not counting the end of line string
 /// \param begin pointer to the first element of the string
 /// \return number of characters
@@ -41,5 +51,9 @@ char *copyIf(char *beginSource, const char *endSource, char *beginDestination, i
 char *copyIfReverse(char *rbeginSource, const char *rendSource, char *beginDestination, int (*f)(int));
 
 char *getEndOfString(char *begin);
+
+bool getWord(char *beginSearch, WordDescriptor *word);
+
+bool getWordReverse(char *rbegin, char *rend, WordDescriptor *word);
 
 #endif
