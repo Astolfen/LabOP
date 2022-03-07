@@ -5,9 +5,9 @@
 
 void task4(char *s) {
     char *recPtr = _stringBuffer;
-    char *endStringBuffer = copy(s, getEndOfString(s), _stringBuffer);
+    copy(s, getEndOfString(s), _stringBuffer);
     char *begin = s;
-    while (recPtr != endStringBuffer) {
+    while (*recPtr != '\0') {
         if (isalpha(*recPtr)) {
             *begin = *recPtr;
             begin++;

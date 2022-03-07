@@ -96,3 +96,22 @@ bool getWordReverse(char *rbegin, char *rend, WordDescriptor *word) {
     word->begin = findSpaceReverse(word->end, rend);
     return true;
 }
+
+char *searchWord(char *begin, char *w1) {
+    begin = findNonSpace(begin);
+    char *readW = w1;
+    while (*begin != '\0' && *readW != '\0') {
+        if (*begin == *readW) {
+            begin++;
+            readW++;
+        } else {
+            readW = w1;
+            begin = findSpace(begin);
+            begin = findNonSpace(begin);
+        }
+    }
+    if (*readW == '\0')
+        return begin - strlen(w1);
+    else
+        return begin;
+}

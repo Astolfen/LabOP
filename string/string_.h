@@ -58,4 +58,6 @@ bool getWord(char *beginSearch, WordDescriptor *word);
 
 bool getWordReverse(char *rbegin, char *rend, WordDescriptor *word);
 
+char *searchWord(char *begin, char *w1);
+
 #endif
