@@ -1,15 +1,15 @@
 #include "string/string_.h"
 #include "string/task/task1.h"
+#include "string/task/task2.h"
 
 int main() {
-    char s1[10] = "123456";
-    char s2[10] = "abc";
-    char *s = copy(s1, s1 + strlen(s1), s2);
+    char s1[100] = "abbbscx  frsf";
+    removeAdjacentEqualLetters(s1);
 
-    for (int i = 0; i < strlen(s2); ++i) {
-        printf("%c", s2[i]);
+    for (int i = 0; i < strlen(s1); i++) {
+        printf("%c", s1[i]);
     }
-//    printf("\n%u %u %d", s2, s, strlen(s2));
+    printf("\n%d", strlen(s1));
 
     return 0;
 }

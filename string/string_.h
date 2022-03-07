@@ -1,6 +1,7 @@
 #ifndef INC_STRING__H
 #define INC_STRING__H
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <memory.h>
 #include <ctype.h>
