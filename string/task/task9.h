@@ -10,24 +10,15 @@ void getString(char *s1, char *s2, char *res) {
     while ((isW1Found = getWord(beginSearch1, &word1)),
             (isW2Found = getWord(beginSearch2, &word2)),
             isW1Found || isW2Found) {
-        if (isW1Found == false) {
-            res = copy(word2.begin, word2.end, res);
-            *res = ' ';
-            res++;
-            beginSearch2 = word2.end;
-        } else if (isW2Found == false) {
+        if (isW1Found) {
             res = copy(word1.begin, word1.end, res);
-            *res = ' ';
-            res++;
+            *res++ = ' ';
             beginSearch1 = word1.end;
-        } else {
-            res = copy(word1.begin, word1.end, res);
-            *res = ' ';
-            res++;
+        }
+
+        if (isW2Found) {
             res = copy(word2.begin, word2.end, res);
-            *res = ' ';
-            res++;
-            beginSearch1 = word1.end;
+            *res++ = ' ';
             beginSearch2 = word2.end;
         }
     }

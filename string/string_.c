@@ -1,5 +1,6 @@
 #include "string_.h"
 
+//нужно пи тестах потом переделать что бы в некоторых задачах когда вводят пустые небыло пробело а просто пустая сторока
 size_t strlen(const char *begin) {
     char *end = begin;
     while (*end != '\0')
@@ -94,6 +95,8 @@ bool getWordReverse(char *rbegin, char *rend, WordDescriptor *word) {
         return false;
 
     word->begin = findSpaceReverse(word->end, rend);
+    word->end++;
+    word->begin++;
     return true;
 }
 
