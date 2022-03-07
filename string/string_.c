@@ -115,3 +115,15 @@ char *searchWord(char *begin, char *w1) {
     else
         return begin;
 }
+
+int areWordsEqual(WordDescriptor w1, WordDescriptor w2) {
+    if (w1.end - w1.begin != w2.end - w2.begin)
+        return 0;
+    while (w1.begin != w1.end) {
+        if (*w1.begin != *w2.begin)
+            return 0;
+        w1.begin++;
+        w2.begin++;
+    }
+    return 1;
+}
