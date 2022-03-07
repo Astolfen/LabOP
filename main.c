@@ -1,10 +1,12 @@
 #include "string/string_.h"
-#include "string/task/task3.h"
+#include "string/task/task4.h"
 
 int main() {
-    char s1[100] = "z1v2 fs3f";
+    char s1[MAX_STRING_SIZE + 1] = "A3B0C1";
 
-    task3(s1);
+    printf("%d\n", strlen(s1));
+
+    task4(s1);
 
     for (int i = 0; i < strlen(s1); i++) {
         printf("%c", s1[i]);

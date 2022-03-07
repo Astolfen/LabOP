@@ -3,25 +3,19 @@
 
 #include "../string_.h"
 
-//переделать с поиском до пробела
 void removeExtraSpaces(char *s) {
-    char *begin = s;
-    while (*begin != '\0' && !isspace(*begin))
-        begin++;
+    char *begin = findSpace(s);
     char *iWrite = begin;
-    bool haveSpase = false;
     while (*begin != '\0') {
         if (isspace(*begin)) {
-            if (!haveSpase) {
-                haveSpase = true;
-                iWrite++;
-            }
-        } else {
-            haveSpase = false;
             *iWrite = *begin;
             iWrite++;
+            begin = findNonSpace(begin);
+        } else {
+            *iWrite = *begin;
+            iWrite++;
+            begin++;
         }
-        begin++;
     }
     *iWrite = '\0';
 }
