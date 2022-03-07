@@ -10,13 +10,20 @@
 #define MAX_N_WORDS_IN_STRING 100
 #define MAX_WORD_SIZE 20
 
-char _stringBuffer[MAX_STRING_SIZE + 1];
+char stringBuffer_[MAX_STRING_SIZE + 1];
 
 typedef struct WordDescriptor {
     char *begin; // позиция начала слова
     char *end; // позиция первого символа, после последнего символа слова
 } WordDescriptor;
 
+typedef struct BagOfWords {
+    WordDescriptor words[MAX_N_WORDS_IN_STRING];
+    size_t size;
+} BagOfWords;
+
+BagOfWords bag_;
+BagOfWords bag2_;
 
 /// Counts the number of characters not counting the end of line string
 /// \param begin pointer to the first element of the string
@@ -61,5 +68,7 @@ bool getWordReverse(char *rbegin, char *rend, WordDescriptor *word);
 char *searchWord(char *begin, char *w1);
 
 int areWordsEqual(WordDescriptor w1, WordDescriptor w2);
+
+void getBagOfWords(BagOfWords *bag, char *s);
 
 #endif

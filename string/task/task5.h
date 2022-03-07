@@ -12,8 +12,8 @@ void replace(char *source, char *w1, char *w2) {
     if (w1Size >= w2Size) {
         readPtr = source;
     } else {
-        copy(source, getEndOfString(source), _stringBuffer);
-        readPtr = _stringBuffer;
+        copy(source, getEndOfString(source), stringBuffer_);
+        readPtr = stringBuffer_;
     }
     recPtr = source;
 

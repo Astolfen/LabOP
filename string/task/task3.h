@@ -4,10 +4,10 @@
 #include "../string_.h"
 
 void digitToStart(WordDescriptor word) {
-    char *endStringBuffer = copy(word.begin, word.end, _stringBuffer);
+    char *endStringBuffer = copy(word.begin, word.end, stringBuffer_);
     char *recPosition = copyIfReverse(endStringBuffer - 1,
-                                      _stringBuffer - 1, word.begin, isdigit);
-    copyIf(_stringBuffer, endStringBuffer, recPosition, isalpha);
+                                      stringBuffer_ - 1, word.begin, isdigit);
+    copyIf(stringBuffer_, endStringBuffer, recPosition, isalpha);
 }
 
 void task3(char *s) {

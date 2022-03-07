@@ -4,8 +4,8 @@
 #include "../string_.h"
 
 void task4(char *s) {
-    char *recPtr = _stringBuffer;
-    copy(s, getEndOfString(s), _stringBuffer);
+    char *recPtr = stringBuffer_;
+    copy(s, getEndOfString(s), stringBuffer_);
     char *begin = s;
     while (*recPtr != '\0') {
         if (isalpha(*recPtr)) {
