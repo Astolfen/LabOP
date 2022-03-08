@@ -10,7 +10,7 @@ void outputWord(WordDescriptor w) {
         begin++;
     }
 }
-
+//убрать bag
 void task12(char *s1, char *s2) {
     getBagOfWords(&bag_, s2);
     char *start = s1;
