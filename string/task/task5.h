@@ -3,6 +3,26 @@
 
 #include "../string_.h"
 
+char *searchWord(char *begin, char *w1) {
+    char *start = begin;
+    begin = findNonSpace(start);
+    char *readW = w1;
+    while (*start != '\0' && *readW != '\0') {
+        if (*start == *readW) {
+            start++;
+            readW++;
+        } else {
+            readW = w1;
+            start = findSpace(start);
+            start = findNonSpace(start);
+        }
+    }
+    if (*readW == '\0')
+        return start - strlen(w1);
+    else
+        return start;
+}
+
 void replace(char *source, char *w1, char *w2) {
     size_t w1Size = strlen(w1);
     size_t w2Size = strlen(w2);

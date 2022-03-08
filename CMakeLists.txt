@@ -10,6 +10,7 @@ add_executable(untitled main.c
         libs/data_structures/ordered_array_set/ordered_array_set.c)
 
 add_library(str string/string_.c string/string_.h
+        string/test_string.c string/test_string.h
         string/task/task1.h string/task/task2.h
         string/task/task3.h string/task/task4.h
         string/task/task5.h string/task/task6.h

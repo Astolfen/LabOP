@@ -47,8 +47,16 @@ char *findNonSpace(char *begin);
 /// \return pointer to the element
 char *findSpace(char *begin);
 
+/// Returns a pointer to the last non-whitespace character in segment (rend;rbegin]
+/// \param rbegin pointer to the element of the string
+/// \param rend pointer to the element of the string
+/// \return pointer to the element
 char *findNonSpaceReverse(char *rbegin, const char *rend);
 
+/// Returns a pointer to the last whitespace character in segment (rend;rbegin]
+/// \param rbegin pointer to the element of the string
+/// \param rend pointer to the element of the string
+/// \return pointer to the element
 char *findSpaceReverse(char *rbegin, const char *rend);
 
 int strcmp(const char *lhs, const char *rhs);
@@ -65,10 +73,23 @@ bool getWord(char *beginSearch, WordDescriptor *word);
 
 bool getWordReverse(char *rbegin, char *rend, WordDescriptor *word);
 
-char *searchWord(char *begin, char *w1);
-
 int areWordsEqual(WordDescriptor w1, WordDescriptor w2);
 
 void getBagOfWords(BagOfWords *bag, char *s);
+
+#define ASSERT_STRING(expected, got) assert_string(expected, got, \
+                                __FILE__, __FUNCTION__, __LINE__)
+
+static void assert_string(const char *expected, const char *got,
+                          const char *file, const char *func,
+                          const int line) {
+    if (strcmp(expected, got) != 0) {
+        fprintf(stderr, "Exception file: %s\n", file);
+        fprintf(stderr, "Function: %s - line: %d\n", func, line);
+        fprintf(stderr, "Got:      \"%s\"\n", got);
+        fprintf(stderr, "Expected: \"%s\"\n", expected);
+    } else
+        fprintf(stderr, "%s - OK!\n", func);
+}
 
 #endif

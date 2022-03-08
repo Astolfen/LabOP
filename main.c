@@ -1,16 +1,9 @@
-#include "string/string_.h"
-#include "string/task/task19.h"
+#include "string/test_string.h"
+#include "string/task/task1.h"
 
 int main() {
-    char s1[MAX_STRING_SIZE + 1] = "z";
-    char s2[MAX_STRING_SIZE + 1] = "a";
-    WordDescriptor w;
-    getWord(s2, &w);
-
-//    for (int j = 0; j < strlen(s1); ++j) {
-//        printf("%c", s1[j]);
-//    }
-    printf("\n%d", task19(s1, w));
+    test_string();
+    test_task1();
 
     return 0;
 }
