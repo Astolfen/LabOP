@@ -8,12 +8,12 @@ bool haveEqualWord(char *s) {
     WordDescriptor w1, w2;
     while (getWord(start, &w1)) {
         char *cmp = w1.end;
+        start = w1.end;
         while (getWord(cmp, &w2)) {
             if (areWordsEqual(w1, w2))
                 return true;
             cmp = w2.end;
         }
-        start = w1.end;
     }
     return false;
 }
