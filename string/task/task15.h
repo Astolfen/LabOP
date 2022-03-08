@@ -15,9 +15,46 @@ void task15(char *s, char *res) {
         }
         start = w.end;
     }
-    *iWrite = '\0';
+    *(--iWrite) = '\0';
 }
 
-//void test();
+void test_task15_1() {
+    char s1[MAX_STRING_SIZE + 1] = "1 5 3 5";
+    char s[MAX_STRING_SIZE + 1];
+
+    task15(s1, s);
+
+    char res[MAX_STRING_SIZE + 1] = "1 3";
+
+    ASSERT_STRING(res, s);
+}
+
+void test_task15_2() {
+    char s1[MAX_STRING_SIZE + 1] = "";
+    char s[MAX_STRING_SIZE + 1] = "";
+
+    task15(s1, s);
+
+    char res[MAX_STRING_SIZE + 1] = "";
+
+    ASSERT_STRING(res, s);
+}
+
+void test_task15_3() {
+    char s1[MAX_STRING_SIZE + 1] = "5 5 5 5 5 5 5 5";
+    char s[MAX_STRING_SIZE + 1];
+
+    task15(s1, s);
+
+    char res[MAX_STRING_SIZE + 1] = "";
+
+    ASSERT_STRING(res, s);
+}
+
+void test_task15() {
+    test_task15_1();
+    test_task15_2();
+    test_task15_3();
+}
 
 #endif

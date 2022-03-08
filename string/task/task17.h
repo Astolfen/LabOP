@@ -19,6 +19,40 @@ void task17a(char *s) {
     *iWrite = '\0';
 }
 
-//void test();
+void test_task17_1() {
+    char s[MAX_STRING_SIZE + 1] = "1 5 3 5";
+
+    task17a(s);
+
+    char res[MAX_STRING_SIZE + 1] = "1 3 5";
+
+    ASSERT_STRING(res, s);
+}
+
+void test_task17_2() {
+    char s[MAX_STRING_SIZE + 1] = "5 5 5 5";
+
+    task17a(s);
+
+    char res[MAX_STRING_SIZE + 1] = "5";
+
+    ASSERT_STRING(res, s);
+}
+
+void test_task17_3() {
+    char s[MAX_STRING_SIZE + 1] = "3";
+
+    task17a(s);
+
+    char res[MAX_STRING_SIZE + 1] = "3";
+
+    ASSERT_STRING(res, s);
+}
+
+void test_task17() {
+    test_task17_1();
+    test_task17_2();
+    test_task17_3();
+}
 
 #endif

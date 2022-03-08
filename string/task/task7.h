@@ -18,6 +18,4 @@ void outputRevers(char *s) {
     }
 }
 
-//void test();
-
 #endif

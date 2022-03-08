@@ -14,8 +14,7 @@ int compare_char(const void *a, const void *b) {
 }
 
 bool task14(char *s) {
-    char *endBuf = copy(s, getEndOfString(s), stringBuffer_);
-    *endBuf = '\0';
+    copy(s, getEndOfString(s) + 1, stringBuffer_);
     char *start = stringBuffer_;
     WordDescriptor w;
     while (getWord(start, &w)) {
@@ -25,6 +24,28 @@ bool task14(char *s) {
     return haveEqualWord(stringBuffer_);
 }
 
-//void test();
+void test_task14_1() {
+    char s[MAX_STRING_SIZE + 1] = "asd sad";
+
+    assert(task14(s) == true);
+}
+
+void test_task14_2() {
+    char s[MAX_STRING_SIZE + 1] = "";
+
+    assert(task14(s) == false);
+}
+
+void test_task14_3() {
+    char s[MAX_STRING_SIZE + 1] = "a b c";
+
+    assert(task14(s) == false);
+}
+
+void test_task14() {
+    test_task14_1();
+    test_task14_2();
+    test_task14_3();
+}
 
 #endif

@@ -22,9 +22,36 @@ void getString(char *s1, char *s2, char *res) {
             beginSearch2 = word2.end;
         }
     }
-    *res = '\0';
+    *(--res) = '\0';
 }
 
-//void test();
+void test_task9_1() {
+    char s1[MAX_STRING_SIZE + 1] = "1 3 5";
+    char s2[MAX_STRING_SIZE + 1] = "2 4";
+    char s[MAX_STRING_SIZE + 1];
+
+    getString(s1, s2, s);
+
+    char res[MAX_STRING_SIZE + 1] = "1 2 3 4 5";
+
+    ASSERT_STRING(res, s);
+}
+
+void test_task9_2() {
+    char s1[MAX_STRING_SIZE + 1] = "1 3 5";
+    char s2[MAX_STRING_SIZE + 1] = "";
+    char s[MAX_STRING_SIZE + 1];
+
+    getString(s1, s2, s);
+
+    char res[MAX_STRING_SIZE + 1] = "1 3 5";
+
+    ASSERT_STRING(res, s);
+}
+
+void test_task9() {
+    test_task9_1();
+    test_task9_2();
+}
 
 #endif

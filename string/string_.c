@@ -125,3 +125,11 @@ void getBagOfWords(BagOfWords *bag, char *s) {
     }
     bag->size = size;
 }
+
+void outputWord(WordDescriptor w) {
+    char *begin = w.begin;
+    while (begin < w.end) {
+        printf("%c", *begin);
+        begin++;
+    }
+}

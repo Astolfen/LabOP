@@ -33,6 +33,49 @@ void task18(char *s1, char *s2) {
     *start2 = '\0';
 }
 
-//void test();
+void test_task18_1() {
+    char s1[MAX_STRING_SIZE + 1] = "3";
+    char s2[MAX_STRING_SIZE + 1] = "3";
+
+    task18(s1, s2);
+
+    char res1[MAX_STRING_SIZE + 1] = "3";
+    char res2[MAX_STRING_SIZE + 1] = "3";
+
+    ASSERT_STRING(res1, s1);
+    ASSERT_STRING(res2, s2);
+}
+
+void test_task18_2() {
+    char s1[MAX_STRING_SIZE + 1] = "3 2";
+    char s2[MAX_STRING_SIZE + 1] = "1";
+
+    task18(s1, s2);
+
+    char res1[MAX_STRING_SIZE + 1] = "3 2";
+    char res2[MAX_STRING_SIZE + 1] = "1 2";
+
+    ASSERT_STRING(res1, s1);
+    ASSERT_STRING(res2, s2);
+}
+
+void test_task18_3() {
+    char s1[MAX_STRING_SIZE + 1] = "";
+    char s2[MAX_STRING_SIZE + 1] = "1";
+
+    task18(s1, s2);
+
+    char res1[MAX_STRING_SIZE + 1] = "1";
+    char res2[MAX_STRING_SIZE + 1] = "1";
+
+    ASSERT_STRING(res1, s1);
+    ASSERT_STRING(res2, s2);
+}
+
+void test_task18() {
+    test_task18_1();
+    test_task18_2();
+    test_task18_3();
+}
 
 #endif

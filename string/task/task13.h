@@ -18,6 +18,29 @@ bool haveEqualWord(char *s) {
     return false;
 }
 
-//void test();
+void test_task13_1() {
+    char s[MAX_STRING_SIZE + 1] = "a sd c";
+
+    assert(haveEqualWord(s) == false);
+}
+
+void test_task13_2() {
+    char s[MAX_STRING_SIZE + 1] = "";
+
+    assert(haveEqualWord(s) == false);
+}
+
+void test_task13_3() {
+    char s[MAX_STRING_SIZE + 1] = "asd asd sad";
+
+    assert(haveEqualWord(s) == true);
+}
+
+void test_task13() {
+    test_task13_1();
+    test_task13_2();
+    test_task13_3();
+
+}
 
 #endif

@@ -77,6 +77,8 @@ int areWordsEqual(WordDescriptor w1, WordDescriptor w2);
 
 void getBagOfWords(BagOfWords *bag, char *s);
 
+void outputWord(WordDescriptor w);
+
 #define ASSERT_STRING(expected, got) assert_string(expected, got, \
                                 __FILE__, __FUNCTION__, __LINE__)
 

@@ -47,6 +47,21 @@ int getCountPalindromeWord(char *s) {
     return count;
 }
 
-//void test();
+void test_task8_1() {
+    char s[MAX_STRING_SIZE + 1] = "a,b,c,d";
+
+    assert(getCountPalindromeWord(s) == 4);
+}
+
+void test_task8_2() {
+    char s[MAX_STRING_SIZE + 1] = "aa,bas";
+
+    assert(getCountPalindromeWord(s) == 1);
+}
+
+void test_task8() {
+    test_task8_1();
+    test_task8_2();
+}
 
 #endif
