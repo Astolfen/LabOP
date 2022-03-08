@@ -19,7 +19,7 @@ add_library(str string/string_.c string/string_.h
         string/task/task13.h string/task/task14.h
         string/task/task15.h string/task/task16.h
         string/task/task17.h string/task/task18.h
-        #string/task/task19.h
+        string/task/task19.h
         )
 
 add_subdirectory(libs)
