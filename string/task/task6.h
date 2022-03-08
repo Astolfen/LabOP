@@ -2,13 +2,14 @@
 #define INC_TASK6_H
 
 #include "../string_.h"
+#include <assert.h>
 
 bool isSortedWords(char *s) {
     WordDescriptor lastW;
     WordDescriptor readW;
     if (!getWord(s, &lastW))
         return false;
-    s = findNonSpace(lastW.end);
+    s = lastW.end;
     while (*s != '\0') {
         if (!getWord(s, &readW))
             return false;
@@ -26,6 +27,21 @@ bool isSortedWords(char *s) {
     return true;
 }
 
-//void test();
+void test_task6_1() {
+    char s[MAX_STRING_SIZE + 1] = "a b ca cb";
+
+    assert(isSortedWords(s));
+}
+
+void test_task6_2() {
+    char s[MAX_STRING_SIZE + 1] = "sads aasd sasd";
+
+    assert(!isSortedWords(s));
+}
+
+void test_task6() {
+    test_task6_1();
+    test_task6_2();
+}
 
 #endif

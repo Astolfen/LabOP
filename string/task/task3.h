@@ -20,6 +20,40 @@ void task3(char *s) {
     }
 }
 
-//void test();
+void test_task3_1() {
+    char s[] = "a32bc1";
+
+    task3(s);
+
+    char res[] = "123abc";
+
+    ASSERT_STRING(res, s);
+}
+
+void test_task3_2() {
+    char s[] = "ab ";
+
+    task3(s);
+
+    char res[] = "ab ";
+
+    ASSERT_STRING(res, s);
+}
+
+void test_task3_3() {
+    char s[] = " 12 ";
+
+    task3(s);
+
+    char res[] = " 21 ";
+
+    ASSERT_STRING(res, s);
+}
+
+void test_task3() {
+    test_task3_1();
+    test_task3_2();
+    test_task3_3();
+}
 
 #endif
