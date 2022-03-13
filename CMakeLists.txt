@@ -9,21 +9,6 @@ add_executable(untitled main.c
         libs/data_structures/unordered_array_set/unordered_array_set.c
         libs/data_structures/ordered_array_set/ordered_array_set.c)
 
-add_library(str string/string_.c string/string_.h
-        string/test_string.c string/test_string.h
-        string/task/task1.h string/task/task2.h
-        string/task/task3.h string/task/task4.h
-        string/task/task5.h string/task/task6.h
-        string/task/task7.h string/task/task8.h
-        string/task/task9.h string/task/task10.h
-        string/task/task11.h string/task/task12.h
-        string/task/task13.h string/task/task14.h
-        string/task/task15.h string/task/task16.h
-        string/task/task17.h string/task/task18.h
-        string/task/task19.h
-        )
-
 add_subdirectory(libs)
 target_link_libraries(untitled algorithms)
 target_link_libraries(untitled data_structures)
-target_link_libraries(untitled str)
