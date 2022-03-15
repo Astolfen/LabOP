@@ -16,10 +16,21 @@ void swap_int(int *a, int *b);
 
 void swap_float(float *a, float *b);
 
-void insertSort(int *a, int n);
-
 void ErrorBadAlloc(const int *a);
 
-int getMinIndex(const int *a, int n,int index);
+int getMinIndex(const int *a, size_t n, int index);
+
+void bubbleSort(int *a, size_t n);
+
+void shakerSort(int *a, size_t n);
+
+void choiceSort(int *a, size_t n);
+
+void insertSort(int *a, size_t n);
+
+//переделать
+void combSort(int *a, size_t size);
+
+
 
 #endif
