@@ -24,13 +24,20 @@ void bubbleSort(int *a, size_t n);
 
 void shakerSort(int *a, size_t n);
 
-void choiceSort(int *a, size_t n);
+void selectionSort(int *a, size_t n);
 
 void insertSort(int *a, size_t n);
 
-//переделать
 void combSort(int *a, size_t size);
 
+void even_oddSort(int *a, size_t n);
 
+void quickSort(int *a, size_t n);
+
+void gnomeSort(int *a, size_t n);
+
+void shellSort(int *a, size_t n);
+
+void radixSort(int *a, size_t n);
 
 #endif

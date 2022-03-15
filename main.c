@@ -84,11 +84,16 @@ void checkTime(void (*sortFunc )(int *, size_t), void (*generateFunc)(int *, siz
 void timeExperiment() {
     // описание функций сортировки
     SortFunc sorts[] = {
-            //{bubbleSort, " bubbleSort "},
-            //{choiceSort, " choiceSort "},
-            //{insertSort, " insertionSort "},
-            //{combSort,   " combSort "}, // расческа
-            //{shakerSort, " shakerSort "},
+            {bubbleSort, " bubbleSort "},
+            {selectionSort, " selectionSort "},
+            {insertSort, " insertionSort "},
+            {combSort,   " combSort "}, // расческа
+            {shakerSort, " shakerSort "},
+            {even_oddSort, " even_oddSort "},
+            {quickSort, " quickSort "},
+            {gnomeSort, " gnomeSort "},
+            {shellSort, " shellSort "},
+            {radixSort, " radixSort "}
     };
     const unsigned FUNCS_N = ARRAY_SIZE(sorts);
 
@@ -127,9 +132,9 @@ void timeExperiment() {
 int main() {
     timeExperiment();
 //    int n = 5;
-//    int a[5] = {8, 3, 5, 2, 1};
+//    int a[5] = {8, 2, 5, 2, 1};
 //
-//    shakerSort(a, n);
+//    radixSort(a, n);
 //
 //    outputArray_(a, n);
 
