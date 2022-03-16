@@ -45,110 +45,129 @@ int getMinIndex(const int *a, size_t n, int index) {
 
 //sorts
 
-void bubbleSort(int *a, size_t n) {
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - 1 - i; ++j) {
-            if (a[j] > a[j + 1])
+long long bubbleSort(int *a, size_t n) {
+    long long nComps = 0;
+    for (int i = 0; ++nComps && i < n - 1; i++) {
+        for (int j = 0; ++nComps && j < n - 1 - i; ++j) {
+            if (++nComps && a[j] > a[j + 1])
                 swap_int(&a[j], &a[j + 1]);
         }
     }
+
+    return nComps;
 }
 
-void shakerSort(int *a, size_t n) {
+long long shakerSort(int *a, size_t n) {
+    long long nComps = 0;
     int l = 0;
     int r = (int) n - 1;
-    while (l < r) {
-        for (int j = l; j < r; j++)
-            if (a[j] > a[j + 1])
+    while (++nComps && l < r) {
+        for (int j = l; ++nComps && j < r; j++)
+            if (++nComps && a[j] > a[j + 1])
                 swap_int(&a[j], &a[j + 1]);
         r--;
-        for (int j = r; j > l; j--)
-            if (a[j] < a[j - 1])
+        for (int j = r; ++nComps && j > l; j--)
+            if (++nComps && a[j] < a[j - 1])
                 swap_int(&a[j], &a[j - 1]);
         l++;
     }
+
+    return nComps;
 }
 
-void selectionSort(int *a, size_t size) {
-    for (int i = 0; i < size - 1; i++) {
+long long selectionSort(int *a, size_t size) {
+    long long nComps = 0;
+    for (int i = 0; ++nComps && i < size - 1; i++) {
         int minPos = i;
-        for (int j = i + 1; j < size; j++)
-            if (a[j] < a[minPos])
+        for (int j = i + 1; ++nComps && j < size; j++)
+            if (++nComps && a[j] < a[minPos])
                 minPos = j;
         swap_int(&a[i], &a[minPos]);
     }
+
+    return nComps;
 }
 
-void insertSort(int *a, size_t n) {
-    for (int i = 1; i < n; i++) {
+long long insertSort(int *a, size_t n) {
+    long long nComps = 0;
+    for (int i = 1; ++nComps && i < n; i++) {
         int j = i;
-        while (j > 0 && a[j] < a[j - 1]) {
+        while (++nComps && j > 0 && a[j] < a[j - 1]) {
             swap_int(&a[j], &a[j - 1]);
             j--;
         }
     }
+    return nComps;
 }
 
-void combSort(int *a, size_t size) {
+long long combSort(int *a, size_t size) {
+    long long nComps = 0;
     size_t step = size;
     int swapped = 1;
-    while (step > 1 || swapped) {
-        if (step > 1)
+    while (++nComps && step > 1 || swapped) {
+        if (++nComps && step > 1)
             step /= 1.24733;
         swapped = 0;
-        for (int i = 0, j = i + step; j < size; ++i, ++j)
-            if (a[i] > a[j]) {
+        for (int i = 0, j = i + step; ++nComps && j < size; ++i, ++j)
+            if (++nComps && a[i] > a[j]) {
                 swap_int(&a[i], &a[j]);
                 swapped = 1;
             }
     }
+    return nComps;
 }
 
-void even_oddSort(int *a, size_t n) {
+long long even_oddSort(int *a, size_t n) {
+    long long nComps = 0;
     bool even = true;
     bool odd = true;
-    while (even || odd) {
+    while (++nComps && even || odd) {
         even = false;
-        for (int i = 0; i < n; i += 2) {
-            if (i + 1 < n && a[i] > a[i + 1]) {
+        for (int i = 0; ++nComps && i < n; i += 2) {
+            if (++nComps && i + 1 < n && a[i] > a[i + 1]) {
                 swap_int(&a[i], &a[i + 1]);
                 even = true;
             }
         }
         odd = false;
-        for (int i = 1; i < n; i += 2) {
-            if (i + 1 < n && a[i] > a[i + 1]) {
+        for (int i = 1; ++nComps && i < n; i += 2) {
+            if (++nComps && i + 1 < n && a[i] > a[i + 1]) {
                 swap_int(&a[i], &a[i + 1]);
                 odd = true;
             }
         }
     }
+    return nComps;
 }
 
-void quickSort(int *a, size_t n) {
+long long quickSort(int *a, size_t n) {
     qsort(a, n, sizeof(int), compare_ints);
+    return 0;
 }
 
-void gnomeSort(int *a, size_t n) {
+long long gnomeSort(int *a, size_t n) {
+    long long nComps = 0;
     int *i = a;
     int *end = a + n;
-    while (i < end) {
-        if (i == a || *(i - 1) <= *i)
+    while (++nComps && i < end) {
+        if (++nComps && i == a || *(i - 1) <= *i)
             i++;
         else {
             swap_int(i - 1, i);
             i--;
         }
     }
+    return nComps;
 }
 
-void shellSort(int *a, size_t n) {
+long long shellSort(int *a, size_t n) {
+    long long nComps = 0;
     int step = n / 2;
-    while (step >= 1) {
-        for (int i = step; i < n; i++) {
+    while (++nComps && step >= 1) {
+        for (int i = step; ++nComps && i < n; i++) {
             int j = i;
             int diff = j - step;
-            while (diff >= 0 && a[diff] > a[j]) {
+            while (++nComps && diff >= 0 && a[diff] > a[j]) {
                 swap_int(&a[diff], &a[j]);
                 j = diff;
                 diff = j - step;
@@ -157,6 +176,7 @@ void shellSort(int *a, size_t n) {
         }
         step /= 2;
     }
+    return nComps;
 }
 
 int digit(int a, int k, int N, int M) {
@@ -171,37 +191,39 @@ int getMax(int *a, size_t n) {
     return max;
 }
 
-void radixSort_(int *a, size_t n, int N) {
+long long radixSort_(int *a, size_t n, int N) {
+    long long nComps = 0;
     int M = (1 << N);
     int max = getMax(a, n);
     int subArray[n];
     int count[M];
     int k = 0;
-    while (max) {
-        for (int i = 0; i < M; i++)
+    while (++nComps && max) {
+        for (int i = 0; ++nComps && i < M; i++)
             count[i] = 0;
 
-        for (int i = 0; i < n; i++)
+        for (int i = 0; ++nComps && i < n; i++)
             count[digit(a[i], k, N, M)]++;
 
-        for (int i = 1; i < M; i++)
+        for (int i = 1; ++nComps && i < M; i++)
             count[i] += count[i - 1];
 
-        for (int i = (int) n - 1; i >= 0; i--) {
+        for (int i = (int) n - 1; ++nComps && i >= 0; i--) {
             int d = digit(a[i], k, N, M);
             subArray[count[d] - 1] = a[i];
             count[d]--;
         }
 
         int cur = 0;
-        for (int i = 0; i < n; i++)
+        for (int i = 0; ++nComps && i < n; i++)
             a[i] = subArray[cur++];
 
         max >>= N;
         k++;
     }
+    return nComps;
 }
 
-void radixSort(int *a, size_t n) {
-    radixSort_(a, n, 8);
+long long radixSort(int *a, size_t n) {
+    return radixSort_(a, n, 8);
 }

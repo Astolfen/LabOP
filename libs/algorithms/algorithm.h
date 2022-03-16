@@ -20,24 +20,24 @@ void ErrorBadAlloc(const int *a);
 
 int getMinIndex(const int *a, size_t n, int index);
 
-void bubbleSort(int *a, size_t n);
+long long bubbleSort(int *a, size_t n);
 
-void shakerSort(int *a, size_t n);
+long long shakerSort(int *a, size_t n);
 
-void selectionSort(int *a, size_t n);
+long long selectionSort(int *a, size_t n);
 
-void insertSort(int *a, size_t n);
+long long insertSort(int *a, size_t n);
 
-void combSort(int *a, size_t size);
+long long combSort(int *a, size_t size);
 
-void even_oddSort(int *a, size_t n);
+long long even_oddSort(int *a, size_t n);
 
-void quickSort(int *a, size_t n);
+long long quickSort(int *a, size_t n);
 
-void gnomeSort(int *a, size_t n);
+long long gnomeSort(int *a, size_t n);
 
-void shellSort(int *a, size_t n);
+long long shellSort(int *a, size_t n);
 
-void radixSort(int *a, size_t n);
+long long radixSort(int *a, size_t n);
 
 #endif

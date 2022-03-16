@@ -5,9 +5,9 @@
 #include "libs/algorithms/algorithm.h"
 #include "libs/algorithms/array/array.h"
 
-#define TIME_TEST(testCode, time) { \
+#define TIME_TEST(testCode, time, nCom) { \
  clock_t start_time = clock (); \
- testCode \
+ nCom = testCode; \
  clock_t end_time = clock (); \
  clock_t sort_time = end_time - start_time; \
  time = (double) sort_time / CLOCKS_PER_SEC; \
@@ -17,7 +17,7 @@
 
 //функция сортировки
 typedef struct SortFunc {
-    void (*sort )(int *a, size_t n);    // указатель на функцию сортировки
+    long long (*sort )(int *a, size_t n);    // указатель на функцию сортировки
 
     char name[64];                      // имя сортировки,используемое при выводе
 } SortFunc;
@@ -28,6 +28,12 @@ typedef struct GeneratingFunc {
 
     char name[64];                          //имя генератора,используемое при выводе
 } GeneratingFunc;
+
+typedef struct GetNCompsFunc {
+    long long (*getNComps )(int *a, size_t n);
+
+    char name[64];
+} GetNCompsFunc;
 
 void generateRandomArray(int *a, size_t n);
 
@@ -42,7 +48,7 @@ bool isOrdered(const int *a, size_t n) {
     return true;
 }
 
-void checkTime(void (*sortFunc )(int *, size_t), void (*generateFunc)(int *, size_t),
+void checkTime(long long (*sortFunc )(int *, size_t), void (*generateFunc)(int *, size_t),
                size_t size, char *experimentName) {
     static size_t runCounter = 1;
 
@@ -53,7 +59,8 @@ void checkTime(void (*sortFunc )(int *, size_t), void (*generateFunc)(int *, siz
     printf(" Name : %s\n", experimentName);
     // замер времени
     double time;
-    TIME_TEST ({ sortFunc(innerBuffer, size); }, time)
+    long long nCom;
+    TIME_TEST (sortFunc(innerBuffer, size), time, nCom)
 
     // результаты замера
     printf(" Status : ");
@@ -61,7 +68,6 @@ void checkTime(void (*sortFunc )(int *, size_t), void (*generateFunc)(int *, siz
         printf("OK! Time : %.3f s.\n", time);
 
         // запись в файл
-//        char name[] = "test_time";
         char filename[256];
         sprintf(filename, "./data/%s.csv", experimentName);
         FILE *f = fopen(filename, "a");
@@ -69,7 +75,7 @@ void checkTime(void (*sortFunc )(int *, size_t), void (*generateFunc)(int *, siz
             printf(" FileOpenError %s", filename);
             exit(1);
         }
-        fprintf(f, "%zu; %.3f\n", size, time);
+        fprintf(f, "%zu; %.3f; %lld\n", size, time, nCom);
         fclose(f);
     } else {
         printf(" Wrong!\n");
@@ -84,16 +90,16 @@ void checkTime(void (*sortFunc )(int *, size_t), void (*generateFunc)(int *, siz
 void timeExperiment() {
     // описание функций сортировки
     SortFunc sorts[] = {
-            {bubbleSort, " bubbleSort "},
+            {bubbleSort,    " bubbleSort "},
             {selectionSort, " selectionSort "},
-            {insertSort, " insertionSort "},
-            {combSort,   " combSort "}, // расческа
-            {shakerSort, " shakerSort "},
-            {even_oddSort, " even_oddSort "},
-            {quickSort, " quickSort "},
-            {gnomeSort, " gnomeSort "},
-            {shellSort, " shellSort "},
-            {radixSort, " radixSort "}
+            {insertSort,    " insertionSort "},
+            {combSort,      " combSort "}, // расческа
+            {shakerSort,    " shakerSort "},
+            {even_oddSort,  " even_oddSort "},
+            {quickSort,     " quickSort "},
+            {gnomeSort,     " gnomeSort "},
+            {shellSort,     " shellSort "},
+            {radixSort,     " radixSort "}
     };
     const unsigned FUNCS_N = ARRAY_SIZE(sorts);
 
@@ -154,5 +160,5 @@ void generateOrderedArray(int *a, size_t n) {
 
 void generateOrderedBackwards(int *a, size_t n) {
     for (int i = 0; i < n; i++)
-        a[i] = n - i - 1;
+        a[i] = (int) n - i - 1;
 }
